@@ -3,7 +3,8 @@ import { NextResponse } from 'next/server'
 let isPublic = createRouteMatcher([
     "/signin",
     "/signup",
-    '/home'
+    '/home',
+    "/sign-up"
 ])
 
 let isPublicApiRoute = createRouteMatcher([
@@ -22,9 +23,12 @@ export default clerkMiddleware((auth,req)=>{
 
     if(!userId){
         if(!isPublic(req) && !isPublicApiRoute(req)){
-                return NextResponse.redirect(new URL('/signin',req.url))
+                return NextResponse.redirect(new URL('/sign-up',req.url))
         }
         
+    }
+  if(isAccessingApi && !isPublicApiRoute(req)){
+        return NextResponse.redirect(new URL('/sign-up',req.url))
     }
     return NextResponse.next()
 
