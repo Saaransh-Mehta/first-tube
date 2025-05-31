@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation'
 const page = () => {
 const router = useRouter()
 const [file,setFile] = useState<File | null>(null)
-const [title,setTitle] = useState<string | null>(null)
-const [description,setDescription] = useState<string | null>(null)
-const [isUploading,setIsUploading] = useState<boolean | null>(false)
+const [title,setTitle] = useState<string>("")
+const [description,setDescription] = useState<string>("")
+const [isUploading,setIsUploading] = useState<boolean>(false)
 
 const MAX_FILE_SIZE = 70 * 1024 * 1024; // 70MB in byte
 
@@ -26,10 +26,11 @@ const handleSubmit = async(event:React.FormEvent)=>{
   formData.append("description",description as string)
 
   try{
-    const result = axios.post("/api/video-upload",formData)
-    result.then((res)=>{
-
-    })
+    const result = axios.post("/api/video-upload",
+      formData
+    
+    )
+    console.log(result)
   }catch(error){
     console.log(error, "Error during sending file request")
   }finally{
@@ -49,7 +50,7 @@ const handleSubmit = async(event:React.FormEvent)=>{
               </label>
               <input
                 type="text"
-                value={title as string}
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="input input-bordered w-full"
                 required
@@ -60,7 +61,7 @@ const handleSubmit = async(event:React.FormEvent)=>{
                 <span className="label-text">Description</span>
               </label>
               <textarea
-                value={description as string}
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="textarea textarea-bordered w-full"
               />

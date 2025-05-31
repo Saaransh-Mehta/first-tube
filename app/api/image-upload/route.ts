@@ -18,11 +18,12 @@ import { v2 as cloudinary } from 'cloudinary';
 export async function POST(request: NextRequest, response: NextResponse){
 
     const {userId} = await auth()
+    console.log("User idis there" + userId)
     if(!userId){
         return NextResponse.json({error:"Unauthorized"},{status:401})
     }
     try{
-        const formData = await request.formData();
+        const formData = await request.formData() as any;
         const file = formData.get("file") as File | null
         if(!file){
             return NextResponse.json({error:"No file found"},{status:401})

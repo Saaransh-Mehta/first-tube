@@ -1,6 +1,8 @@
 "use client"
-import React,{useRef,useEffect,useState, HtmlHTMLAttributes} from 'react'
-import { CldImage } from 'next-cloudinary'
+
+import React, {useState, useEffect, useRef} from 'react'
+import axios from 'axios'
+import { CldImage } from 'next-cloudinary';
 
 const socialFormats = {
     "Instagram Square (1:1)": { width: 1080, height: 1080, aspectRatio: "1:1" },
@@ -10,66 +12,72 @@ const socialFormats = {
     "Facebook Cover (205:78)": { width: 820, height: 312, aspectRatio: "205:78" },
   };
 
-type socialFormat =  keyof typeof socialFormats
-const page = () => {
-  const [uploadedImage,setUploadedImage] = useState<string | null>(null)
-  const [defaultImageFormat,setDefaultImageFormat] = useState<socialFormat>("Instagram Square (1:1)")
-  const [isUploading,setIsUploading] = useState<boolean>(false)
-  const [isTransforming,setIsTransforming] = useState<boolean>(false)
-  const imageRef = useRef<HTMLImageElement>(null)
+  type SocialFormat = keyof typeof socialFormats;
 
-  useEffect(()=>{
-    if(uploadedImage){
-      setIsTransforming(true)
+  export default function SocialShare() {
+    const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+    const [selectedFormat, setSelectedFormat] = useState<SocialFormat>("Instagram Square (1:1)");
+    const [isUploading, setIsUploading] = useState(false);
+    const [isTransforming, setIsTransforming] = useState(false);
+    const imageRef = useRef<HTMLImageElement>(null);
+
+
+    useEffect(() => {
+        if(uploadedImage){
+            setIsTransforming(true);
+        }
+    }, [selectedFormat, uploadedImage])
+
+    const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if(!file) return;
+        setIsUploading(true);
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+            const response = await fetch("/api/image-upload", {
+                method: "POST",
+                body: formData
+            })
+
+            if(!response.ok) throw new Error("Failed to upload image");
+
+            const data = await response.json();
+            setUploadedImage(data.publicId);
+
+
+        } catch (error) {
+            console.log(error)
+            alert("Failed to upload image");
+        } finally{
+            setIsUploading(false);
+        }
+    };
+
+    const handleDownload = () => {
+        if(!imageRef.current) return;
+
+        fetch(imageRef.current.src)
+        .then((response) => response.blob())
+        .then((blob) => {
+            const url = window.URL.createObjectURL(blob)
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `${selectedFormat
+          .replace(/\s+/g, "_")
+          .toLowerCase()}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(link);
+        })
     }
-  },[defaultImageFormat,uploadedImage])
 
-    const handleFileUpload = async(e:React.ChangeEvent<HTMLInputElement>)=>{
-      const file = e.target.files?.[0]
-      if(file){
-        setIsUploading(true)
-        const formData = new FormData()
-        formData.append("file",file)
-        try{
-         const response =  await fetch("/api/image-upload",{
-            method:"POST",
-            body:formData
-          })
-          if(!response.ok){
-            throw new Error("Failed to upload image")
 
-          }
-          const result = await response.json()
-          setUploadedImage(result.publicId)
-          setIsUploading(false)
-        }catch(error){
-          console.log("Error in submitting form", error)
-          return new Error("Failed to upload image")
-        
-      }
-    }
-
-const handleDownload = async()=>{
-  if(!imageRef.current){
-    return;
-  }
-  await fetch(imageRef.current.src)
-    .then(response=>response.blob())
-    .then((blob)=>{
-      const url = window.URL.createObjectURL(blob)
-      const link = document.createElement("a")
-      link.href = url
-      link.download = "image.png"
-      document.body.appendChild(link)
-      link.click();
-      document.removeChild(link)
-      window.URL.revokeObjectURL(url)
-    })
-}
-
-  return (
-    <div>
-              <div className="container mx-auto p-4 max-w-4xl">
+    return (
+        <div className="container mx-auto p-4 max-w-4xl">
           <h1 className="text-3xl font-bold mb-6 text-center">
             Social Media Image Creator
           </h1>
@@ -100,9 +108,9 @@ const handleDownload = async()=>{
                   <div className="form-control">
                     <select
                       className="select select-bordered w-full"
-                      value={defaultImageFormat}
+                      value={selectedFormat}
                       onChange={(e) =>
-                        setDefaultImageFormat(e.target.value as socialFormat)
+                        setSelectedFormat(e.target.value as SocialFormat)
                       }
                     >
                       {Object.keys(socialFormats).map((format) => (
@@ -122,13 +130,13 @@ const handleDownload = async()=>{
                         </div>
                       )}
                       <CldImage
-                        width={socialFormats[defaultImageFormat].width}
-                        height={socialFormats[defaultImageFormat].height}
+                        width={socialFormats[selectedFormat].width}
+                        height={socialFormats[selectedFormat].height}
                         src={uploadedImage}
                         sizes="100vw"
                         alt="transformed image"
                         crop="fill"
-                        aspectRatio={socialFormats[defaultImageFormat].aspectRatio}
+                        aspectRatio={socialFormats[selectedFormat].aspectRatio}
                         gravity='auto'
                         ref={imageRef}
                         onLoad={() => setIsTransforming(false)}
@@ -138,7 +146,7 @@ const handleDownload = async()=>{
 
                   <div className="card-actions justify-end mt-6">
                     <button className="btn btn-primary" onClick={handleDownload}>
-                      Download for {defaultImageFormat}
+                      Download for {selectedFormat}
                     </button>
                   </div>
                 </div>
@@ -146,10 +154,5 @@ const handleDownload = async()=>{
             </div>
           </div>
         </div>
-    </div>
-  )
+      );
 }
-}
-
-
-export default page

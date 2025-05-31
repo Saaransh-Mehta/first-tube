@@ -23,8 +23,10 @@ const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest, response: NextResponse){
     await prisma.$connect()
-    const {userId} = await auth()
+    const {userId}:any =await auth()
+    console.log("the user id on video-upload route is" + userId)
     if(!userId){
+        console.log("no user id")
         return NextResponse.json({error:"Unauthorized"},{status:401})
     }
     try{
