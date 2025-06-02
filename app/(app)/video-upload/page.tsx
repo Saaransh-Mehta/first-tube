@@ -1,10 +1,10 @@
 "use client"
-import React,{useState,useEffect,useRef} from 'react'
+import React,{useState} from 'react'
 import axios from "axios"
 import { useRouter } from 'next/navigation'
 
 const page = () => {
-const router = useRouter()
+// const router = useRouter()
 const [file,setFile] = useState<File | null>(null)
 const [title,setTitle] = useState<string>("")
 const [description,setDescription] = useState<string>("")

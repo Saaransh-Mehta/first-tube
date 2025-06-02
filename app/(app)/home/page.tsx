@@ -6,7 +6,7 @@ import { Video } from '@/generated/prisma'
 function Home() {
     const [videos, setVideos] = useState<Video[]>([])
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
+    // const [error, setError] = useState<string | null>(null)
 
     const fetchVideos = useCallback(async () => {
         try {
@@ -19,7 +19,7 @@ function Home() {
             }
         } catch (error) {
             console.log(error);
-            setError("Failed to fetch videos")
+            // setError("Failed to fetch videos")
 
         } finally {
             setLoading(false)
