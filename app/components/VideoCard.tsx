@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import realtiveTime from "dayjs/plugin/relativeTime"
 import {filesize} from "filesize"
 import { Video } from '@/generated/prisma'
+import { useRouter } from 'next/navigation';
 
 dayjs.extend(realtiveTime)
 
@@ -14,9 +15,12 @@ interface VideoCardProps {
 }
 
 const  VideoCard: React.FC<VideoCardProps> = ({video, onDownload}) => {
+  const router = useRouter()
     const [isHovered, setIsHovered] = useState(false)
     const [previewError, setPreviewError] = useState(false)
-
+  const onHandleClick = ()=>{
+      router.push(`/video/${video.publicId}`)
+  }
     const getThumbnailUrl = useCallback((publicId: string) => {
         return getCldImageUrl({
             src: publicId,
@@ -73,6 +77,7 @@ const  VideoCard: React.FC<VideoCardProps> = ({video, onDownload}) => {
 
       return (
         <div
+          onClick={onHandleClick}
           className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
