@@ -1,0 +1,24 @@
+import { PrismaClient } from "@/generated/prisma";
+import { NextRequest, NextResponse } from "next/server";
+
+const prisma = new PrismaClient()
+
+export async function GET(request:NextRequest){
+    try{
+        const url = new URL(request.url)
+        const publicId = url.searchParams.get("publicId")
+        if(!publicId){
+            return NextResponse.json({error:"No Public Id"})
+        } 
+        await prisma.$connect()
+        const comments = await prisma.comment.findMany({
+            where:{videoPublicId:publicId},
+            orderBy:{createdAt:"desc"}
+        })
+        return NextResponse.json(comments)
+    }catch(error){
+        return NextResponse.json({error:"Failed to load comments"},{status:400})
+    }finally{
+
+    }
+}

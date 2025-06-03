@@ -1,20 +1,29 @@
-import { PrismaClient } from "@/generated/prisma";
 import { NextRequest, NextResponse } from "next/server";
+import { PrismaClient } from "@/generated/prisma";
 
+const prisma = new PrismaClient();
 
-export async function GET(request:NextRequest){
+export async function GET(request: NextRequest) {
+  const url = new URL(request.url);
+  const publicId = url.searchParams.get("publicId");
 
-const prisma = new PrismaClient()
-prisma.$connect() 
-    const url = new URL(request.url);
-    const publicId = url.searchParams.get("publicId") ?? undefined;
-    const video = await prisma.video.findUnique({
-        where: { publicId }
-    })
+  if (!publicId) {
+    return NextResponse.json({ error: "Missing publicId" }, { status: 400 });
+  }
 
-    if(!video){
-        return NextResponse.json({error:"Error while fetching video"},{status:401})
-    }
+  const video = await prisma.video.findUnique({
+    where: { publicId },
+  });
 
-    return NextResponse.json(video)
+  if (!video) {
+    return NextResponse.json({ error: "Video not found" }, { status: 404 });
+  }
+
+ 
+  return NextResponse.json({
+    title: video.title,
+    description: video.desription,
+    publicId: video.publicId,
+    
+  });
 }

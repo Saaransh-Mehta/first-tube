@@ -7,11 +7,36 @@ import "cloudinary-video-player/cld-video-player.min.css";
 // import { DefaultVideoLayout } from "@vidstack/react/player/layouts/plyr;
 import { MediaPlayer, MediaProvider } from '@vidstack/react'
 import axios from 'axios';
+import { NextResponse } from 'next/server';
+import VideoDescription from '@/app/components/VideoDescription';
+import CommentSection from '@/app/components/CommentSection';
+
 const page = ({params}:{params:Promise<{publicId:string[]}>}) => {
 
-    const { publicId } = use(params);
-    const stringifiedPublicId = publicId.join('/');
-    console.log("this is stringifiedPublicId "+stringifiedPublicId)
+  const [data,setData] = useState<any>()
+  
+  
+  const { publicId } = use(params);
+  const stringifiedPublicId = publicId.join('/');
+
+  
+
+  useEffect(()=>{
+    const fetchData = async()=>{
+      try{
+        const response = await axios.get(`/api/get-video?publicId=${encodeURIComponent(stringifiedPublicId)}`)
+        console.log("this is response data" + response.data)
+        setData(response.data)
+        
+      }catch(error){
+          return NextResponse.json({error:"Error while fetching the data"},{status:401}) 
+      }
+    }
+    fetchData()
+    console.log(data)
+  },[publicId])
+  
+   console.log('stringified public id is ', stringifiedPublicId)
     const videoUrl = getCldVideoUrl({
         src: stringifiedPublicId,
         width: 1920,
@@ -19,7 +44,7 @@ const page = ({params}:{params:Promise<{publicId:string[]}>}) => {
         // format: 
         assetType:'video',
         format: 'mp4',
-        gravity:"auto"
+        // gravity:"auto"
         // rawTransformations:
     })
     const poster = getCldImageUrl({
@@ -29,19 +54,17 @@ const page = ({params}:{params:Promise<{publicId:string[]}>}) => {
       height: 1080,
     })
 
-    console.log("this is video Url "+videoUrl)
   return (
     
   <>
-<div className='video-player flex justify-center flex-col items-center gap-10'>
+<div className='video-player flex justify-center flex-col items-center'>
 
 
-  <div className='video-title'>
-    <h1 className='text-7xl'>Video Title</h1>
-
-  </div>
+  
     <div className='flex justify-center items-center w-full h-full'>
       <MediaPlayer
+                poster={poster}
+                className='rounded-lg'
                 title="video"
                 streamType="on-demand"
                 load="eager"
@@ -57,7 +80,12 @@ const page = ({params}:{params:Promise<{publicId:string[]}>}) => {
                 {/* <DefaultVideoLayout /> */}
             </MediaPlayer>
     </div>
-   
+   <div className='video-description '>
+      <VideoDescription description={data?.description} title={data?.title}/>
+   </div>
+   <div className="comment-section">
+    <CommentSection stringifiedPublicId={stringifiedPublicId}/>
+   </div>
  </div>
   </>
  
