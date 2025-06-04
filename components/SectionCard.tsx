@@ -13,7 +13,7 @@ export function SectionCards() {
   return (
     <main>
          <div className="grid grid-cols-4 gap-4">
-      <Card >
+      <Card className="cursor-pointer hover:shadow-xl transition-all">
         <CardHeader>
           <CardDescription>Total Revenue</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
@@ -35,8 +35,8 @@ export function SectionCards() {
           </div>
         </CardFooter>
       </Card>
-      <Card className="@container/card">
-        <CardHeader>
+<Card className="cursor-pointer hover:shadow-xl transition-all">
+          <CardHeader>
           <CardDescription>New Subscribers</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             1,234
@@ -57,8 +57,8 @@ export function SectionCards() {
           </div>
         </CardFooter>
       </Card>
-      <Card className="@container/card">
-        <CardHeader>
+<Card className="cursor-pointer hover:shadow-xl transition-all">
+          <CardHeader>
           <CardDescription>Active Subscribers</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             45,678
@@ -76,8 +76,8 @@ export function SectionCards() {
           <div className="text-muted-foreground">Engagement exceed targets</div>
         </CardFooter>
       </Card>
-      <Card className="@container/card">
-        <CardHeader>
+<Card className="cursor-pointer hover:shadow-xl transition-all">
+          <CardHeader>
           <CardDescription>Watch Time</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             4.5k
