@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, ThumbsUp, ThumbsDown } from 'lucide-react';
-import { Avatar,AvatarFallback } from '../../components/ui/avatar';
-import { Button } from '../../components/ui/button';
+import { Avatar,AvatarFallback } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 
 
 interface VideoDescriptionProps {
