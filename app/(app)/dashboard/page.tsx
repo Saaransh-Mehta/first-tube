@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import LineChart from '@/components/LineChart';
 import { SectionCards } from '@/components/SectionCard';
 import VideoComponent from '@/components/RecentVideo';
+import QuickActions from '@/components/QuickActions';
 const page = () => {
   return (
     <main className='dashboard flex flex-col gap-4'>
@@ -25,8 +26,10 @@ const page = () => {
         </div>
         <div className="bottom-dashboard">
             <div className='grid grid-cols-2 place-content-center'>
-                    <div><VideoComponent/></div>
-                    <div></div>
+                    <div className='video-card'><VideoComponent/></div>
+                    <div className='quick-actions'>
+                        <QuickActions/>
+                    </div>
             </div>
         </div>
       

@@ -1,8 +1,18 @@
+"use client"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Play, Clock } from "lucide-react"
-
+import { useEffect } from "react"
 export default function VideoComponent() {
+    useEffect(()=>{
+        const fetchUserVideo = async()=>{
+            try{
+
+            }catch(error){
+                console.log("This is error")
+            }
+        }
+    },[])
   const videos = [
     {
       id: 1,
@@ -28,23 +38,7 @@ export default function VideoComponent() {
       status: "published",
       updatedAgo: "3 days ago",
     },
-    {
-      id: 4,
-      title: "TypeScript Best Practices",
-      thumbnail: "/placeholder.svg?height=80&width=120",
-      duration: "15:30",
-      status: "in progress",
-      updatedAgo: "5 days ago",
-    },
-    {
-      id: 5,
-      title: "Database Design Fundamentals",
-      thumbnail: "/placeholder.svg?height=80&width=120",
-      duration: "22:18",
-      status: "published",
-      updatedAgo: "1 week ago",
-    },
-  ]
+      ]
 
   return (
     <Card className="w-full max-w-2xl">
