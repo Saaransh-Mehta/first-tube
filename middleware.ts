@@ -6,6 +6,7 @@ const publicRoutes = createRouteMatcher([
   "/sign-up",
   "/",
   "/home",
+  "/api/webhooks/clerk(.*)"
 ]);
 
 // List your public API routes here; these don't need auth

@@ -12,6 +12,7 @@ const CommentSection = ({stringifiedPublicId}:any) => {
   { id: 1, user: "User1", content: "Amazing song!", createdAt: "2 hours ago", likes: 12 },
   { id: 2, user: "User2", content: "Love the vibe!", createdAt: "1 hour ago", likes: 5 },
 ]);
+const [totalCount , setTotalCount] = useState<number>(0)
 const [newComments,setNewComments] = useState("")
 const formatTime = (time: number): string => {
     const minutes = Math.floor(time / 60);
@@ -24,7 +25,8 @@ const formatTime = (time: number): string => {
       try{
         const response = await axios.get(`/api/all-comment/?publicId=${encodeURIComponent(stringifiedPublicId)}`)
         console.log(JSON.stringify(response.data,null,2))
-       setComments(response.data)
+       setComments(response.data.comments)
+       setTotalCount(response.data.totalCount)
       }catch(error){
         console.log(error)
       }
@@ -60,7 +62,7 @@ const formatTime = (time: number): string => {
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-6">
                   <h2 className="text-lg font-semibold">Comments</h2>
-                  <Badge variant="secondary">247</Badge>
+                  <Badge variant="secondary">{totalCount}</Badge>
                 </div>
 
                 <div className="flex gap-4 mb-6">

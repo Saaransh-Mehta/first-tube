@@ -15,7 +15,10 @@ export async function GET(request:NextRequest){
             where:{videoPublicId:publicId},
             orderBy:{createdAt:"desc"}
         })
-        return NextResponse.json(comments)
+        const totalCount = await prisma.comment.count({
+            where:{videoPublicId:publicId}
+        })
+        return NextResponse.json({comments:comments, totalCount:totalCount})
     }catch(error){
         return NextResponse.json({error:"Failed to load comments"},{status:400})
     }finally{

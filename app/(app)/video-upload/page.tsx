@@ -52,7 +52,7 @@ const handleSubmit = async(event:React.FormEvent)=>{
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="input input-bordered w-full"
+                className="input outline-black/70 outline input-bordered w-full"
                 required
               />
             </div>
@@ -63,7 +63,7 @@ const handleSubmit = async(event:React.FormEvent)=>{
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="textarea textarea-bordered w-full"
+                className="textarea outline outline-black/70 textarea-bordered w-full"
               />
             </div>
             <div>
@@ -74,7 +74,7 @@ const handleSubmit = async(event:React.FormEvent)=>{
                 type="file"
                 accept="video/*"
                 onChange={(e) => setFile(e.target.files?.[0] || null)}
-                className="file-input file-input-bordered w-full"
+                className="file-input  file-input-bordered w-full"
                 required
               />
             </div>

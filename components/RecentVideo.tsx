@@ -17,7 +17,7 @@ export default function VideoComponent() {
     {
       id: 1,
       title: "Introduction to React Hooks",
-      thumbnail: "/placeholder.svg?height=80&width=120",
+      thumbnail: "",
       duration: "12:34",
       status: "published",
       updatedAgo: "2 hours ago",
@@ -25,19 +25,12 @@ export default function VideoComponent() {
     {
       id: 2,
       title: "Building Modern UIs with Tailwind CSS",
-      thumbnail: "/placeholder.svg?height=80&width=120",
+      thumbnail: "",
       duration: "18:45",
       status: "in progress",
       updatedAgo: "1 day ago",
     },
-    {
-      id: 3,
-      title: "Next.js App Router Deep Dive",
-      thumbnail: "/placeholder.svg?height=80&width=120",
-      duration: "25:12",
-      status: "published",
-      updatedAgo: "3 days ago",
-    },
+
       ]
 
   return (
@@ -54,7 +47,7 @@ export default function VideoComponent() {
             <div className="relative flex-shrink-0">
               <img
                 src={video.thumbnail || "/placeholder.svg"}
-                alt={video.title}
+                alt="error"
                 className="w-20 h-12 object-cover rounded-md bg-muted"
               />
               <div className="absolute bottom-1 right-1 bg-black/80 text-white text-xs px-1 rounded">

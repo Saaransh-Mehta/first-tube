@@ -8,8 +8,8 @@ import "cloudinary-video-player/cld-video-player.min.css";
 import { MediaPlayer, MediaProvider } from '@vidstack/react'
 import axios from 'axios';
 import { NextResponse } from 'next/server';
-import VideoDescription from '@/app/components/VideoDescription';
-import CommentSection from '@/app/components/CommentSection';
+import VideoDescription from '@/components/VideoDescription';
+import CommentSection from '@/components/CommentSection';
 
 const page = ({params}:{params:Promise<{publicId:string[]}>}) => {
 
