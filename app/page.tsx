@@ -1,10 +1,15 @@
+import { HeroSectionOne } from "@/components/Hero";
+import { NavbarComponent } from "@/components/Navbar";
 
 export default function Home() {
   return (
-   <div className="flex justify-center items-center text-black font-semibold text-3xl h-screen">
- 
-    Hello From Next Js
-   
+   <main className="landing-page">
+   <div className="navbar">
+    <NavbarComponent/>
    </div>
+   <div className="hero-section">
+    <HeroSectionOne/>
+   </div>
+   </main>
   );
 }
