@@ -2,6 +2,7 @@ import { NextResponse,NextRequest } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { v2 as cloudinary } from 'cloudinary';
 
+export const runtime = "nodejs";
 
   cloudinary.config({ 
         cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME, 

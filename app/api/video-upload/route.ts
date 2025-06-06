@@ -3,6 +3,7 @@ import { auth } from '@clerk/nextjs/server';
 import { v2 as cloudinary } from 'cloudinary';
 
 import { PrismaClient } from '@/generated/prisma';
+export const runtime = "nodejs";
 
 const prisma = new PrismaClient()
 
