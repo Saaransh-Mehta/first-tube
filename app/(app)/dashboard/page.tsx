@@ -1,9 +1,4 @@
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { AppRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import React from 'react'
-import { Eye , TrendingUp,Users , ThumbsUp, Play , TrendingDown} from 'lucide-react';
-import Chart from 'chart.js/auto'
-import { Badge } from '@/components/ui/badge';
 import LineChart from '@/components/LineChart';
 import { SectionCards } from '@/components/SectionCard';
 import VideoComponent from '@/components/RecentVideo';

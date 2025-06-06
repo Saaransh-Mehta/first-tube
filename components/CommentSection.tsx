@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { ThumbsUp,SendHorizontal } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns';
 import axios from 'axios'
-const CommentSection = ({stringifiedPublicId}:any) => {
+const CommentSection = ({ stringifiedPublicId }: { stringifiedPublicId: string }) => {
     const [comments, setComments] = useState([
   { id: 1, user: "User1", content: "Amazing song!", createdAt: "2 hours ago", likes: 12 },
   { id: 2, user: "User2", content: "Love the vibe!", createdAt: "1 hour ago", likes: 5 },
@@ -32,7 +32,7 @@ const formatTime = (time: number): string => {
       }
     }
     fetchComments()
-  },[])
+  })
 
     const handleSubmit = async()=>{
         const newCommentObj = {
@@ -49,6 +49,7 @@ const formatTime = (time: number): string => {
             const response = await axios.post(`/api/comment/?publicId=${encodeURIComponent(stringifiedPublicId)}`,{
               content:newComments
             })
+            return response
         }catch(error){
           console.log(error)
         }

@@ -29,6 +29,7 @@ export async function POST(request:NextRequest){
         })
         return NextResponse.json({ message: "Comment added successfully", comment });
     }catch(error){
+        console.log(error)
         return NextResponse.json({error:"Failed to load comments"},{status:400})
     }finally{
         await prisma.$disconnect()

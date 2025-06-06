@@ -9,6 +9,7 @@ import {
   Filler,
   Tooltip,
   Legend,
+  TooltipItem
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useState } from 'react';
@@ -41,7 +42,22 @@ export default function VisitorsChart() {
 
   const { labels, data } = generateChartData(range);
 
-  const chartData = {
+  interface ChartDataSet {
+    label: string;
+    data: number[];
+    fill: boolean;
+    tension: number;
+    borderColor: string;
+    backgroundColor: (ctx: { chart: { ctx: CanvasRenderingContext2D } }) => CanvasGradient;
+    pointRadius: number;
+  }
+
+  interface ChartData {
+    labels: string[];
+    datasets: ChartDataSet[];
+  }
+
+  const chartData: ChartData = {
     labels,
     datasets: [
       {
@@ -50,13 +66,12 @@ export default function VisitorsChart() {
         fill: true,
         tension: 0.4,
         borderColor: 'rgba(0, 0, 0, 0.7)',
-        backgroundColor: (ctx: any) => {
-  const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 300);
-  gradient.addColorStop(0, 'rgba(30, 64, 175, 0.3)');  
-  gradient.addColorStop(1, 'rgba(219, 234, 254, 0.05)'); 
-  return gradient;
-},
-
+        backgroundColor: (ctx: { chart: { ctx: CanvasRenderingContext2D } }) => {
+          const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 300);
+          gradient.addColorStop(0, 'rgba(30, 64, 175, 0.3)');  
+          gradient.addColorStop(1, 'rgba(219, 234, 254, 0.05)');    
+          return gradient;
+        },
         pointRadius: 0,
       },
     ],
@@ -79,9 +94,9 @@ const option = {
       titleFont: { weight: 'bold' as const, size: 14 },
       bodyFont: { size: 13 },
       callbacks: {
-        label: function (context: any) {
-          return `Visitors: ${context.parsed.y}`;
-        },
+        label: function (context: TooltipItem<'line'>) {
+  return `Visitors: ${context.parsed.y}`;
+},
       },
     },
   },

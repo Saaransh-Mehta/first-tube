@@ -2,17 +2,8 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Play, Clock } from "lucide-react"
-import { useEffect } from "react"
-export default function VideoComponent() {
-    useEffect(()=>{
-        const fetchUserVideo = async()=>{
-            try{
 
-            }catch(error){
-                console.log("This is error")
-            }
-        }
-    },[])
+export default function VideoComponent() {
   const videos = [
     {
       id: 1,

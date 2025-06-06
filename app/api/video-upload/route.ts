@@ -17,13 +17,13 @@ const prisma = new PrismaClient()
         public_id:string,
         bytes:number,
         duration?: number
-        [key: string] : any
+        [key: string] : unknown
 
     }
 
-export async function POST(request: NextRequest, response: NextResponse){
+export async function POST(request: NextRequest){
     await prisma.$connect()
-    const {userId}:any =await auth()
+    const {userId} =await auth()
     console.log("the user id on video-upload route is" + userId)
     if(!userId){
         console.log("no user id")

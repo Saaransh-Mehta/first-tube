@@ -20,6 +20,7 @@ export async function GET(request:NextRequest){
         })
         return NextResponse.json({comments:comments, totalCount:totalCount})
     }catch(error){
+        console.log(error)
         return NextResponse.json({error:"Failed to load comments"},{status:400})
     }finally{
 

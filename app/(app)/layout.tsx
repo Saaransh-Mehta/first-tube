@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useClerk, useUser } from "@clerk/nextjs";
 import {
   LogOutIcon,
@@ -27,13 +27,9 @@ export default function AppLayout({
 }>) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
   const { signOut } = useClerk();
   const { user } = useUser();
 
-  const handleLogoClick = () => {
-    router.push("/");
-  };
 
   const handleSignOut = async () => {
     await signOut();

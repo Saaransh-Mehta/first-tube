@@ -1,9 +1,9 @@
 "use client"
 import React,{useState} from 'react'
 import axios from "axios"
-import { useRouter } from 'next/navigation'
 
-const page = () => {
+
+const Page = () => {
 // const router = useRouter()
 const [file,setFile] = useState<File | null>(null)
 const [title,setTitle] = useState<string>("")
@@ -91,4 +91,4 @@ const handleSubmit = async(event:React.FormEvent)=>{
   )
 }
 
-export default page
+export default Page

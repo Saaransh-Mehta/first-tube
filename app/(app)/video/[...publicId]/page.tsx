@@ -1,8 +1,6 @@
 'use client'
 import React,{useState, useEffect,use} from 'react'
-import { CldVideoPlayer, getCldImageUrl, getCldVideoUrl } from 'next-cloudinary'
-import ReactPlayer from 'react-player';
-import cloudinary from 'cloudinary-video-player';
+import {  getCldImageUrl, getCldVideoUrl } from 'next-cloudinary'
 import "cloudinary-video-player/cld-video-player.min.css";
 // import { DefaultVideoLayout } from "@vidstack/react/player/layouts/plyr;
 import { MediaPlayer, MediaProvider } from '@vidstack/react'
@@ -11,13 +9,19 @@ import { NextResponse } from 'next/server';
 import VideoDescription from '@/components/VideoDescription';
 import CommentSection from '@/components/CommentSection';
 
-const page = ({params}:{params:Promise<{publicId:string[]}>}) => {
+const Page = ({params}:{params:Promise<{publicId:string[]}>}) => {
 
-  const [data,setData] = useState<any>()
+  type Video = {
+    id: string;
+    title: string;
+    description: string;
+    url: string;
+  }
+  const [data,setData] = useState<Video | null>()
   
   
   const { publicId } = use(params);
-  const stringifiedPublicId = publicId.join('/');
+  const stringifiedPublicId:string = publicId.join('/');
 
   
 
@@ -29,6 +33,7 @@ const page = ({params}:{params:Promise<{publicId:string[]}>}) => {
         setData(response.data)
         
       }catch(error){
+        console.log(error)
           return NextResponse.json({error:"Error while fetching the data"},{status:401}) 
       }
     }
@@ -81,7 +86,7 @@ const page = ({params}:{params:Promise<{publicId:string[]}>}) => {
             </MediaPlayer>
     </div>
    <div className='video-description '>
-      <VideoDescription description={data?.description} title={data?.title}/>
+      <VideoDescription description={data?.description ?? ''} title={data?.title ?? ''}/>
    </div>
    <div className="comment-section">
     <CommentSection stringifiedPublicId={stringifiedPublicId}/>
@@ -92,4 +97,4 @@ const page = ({params}:{params:Promise<{publicId:string[]}>}) => {
   )
 }
 
-export default page
+export default Page

@@ -11,7 +11,7 @@ import { v2 as cloudinary } from 'cloudinary';
 
     interface cloudinaryUploadResponse{
         public_id:string,
-        [key: string] : any
+        [key: string] : unknown
 
     }
 
