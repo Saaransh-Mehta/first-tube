@@ -11,13 +11,15 @@ import {
   Share2Icon,
   UploadIcon,
   ImageIcon,
+  BotIcon
 } from "lucide-react";
 
 const sidebarItems = [
   { href: "/home", icon: LayoutDashboardIcon, label: "Home Page" },
   { href: "/social-share", icon: Share2Icon, label: "Social Share" },
   { href: "/video-upload", icon: UploadIcon, label: "Video Upload" },
-  {href:"/dashboard", icon:ImageIcon, label:"Dashboard"}
+  {href:"/dashboard", icon:ImageIcon, label:"Dashboard"},
+  {href:"/create-ai",icon:BotIcon,label:"Create with AI"}
 ];
 
 export default function AppLayout({
@@ -107,8 +109,8 @@ export default function AppLayout({
                   href={item.href}
                   className={`flex items-center space-x-4 px-4 py-2 rounded-lg ${
                     pathname === item.href
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300"
+                      ? "bg-black/80 rounded-xl text-white"
+                      : "hover:bg-base-400" 
                   }`}
                   onClick={() => setSidebarOpen(false)}
                 >

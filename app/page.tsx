@@ -16,7 +16,7 @@ export default function Home() {
     <HeroSectionOne/>
    </div>
    <div className="features flex text-center items-center justify-center flex-col gap-4 p-4">
-    <h1 className="text-xl md:text-2xl lg:text-4xl p-2 font-semibold">Features enhance your customers <br /> experience</h1>
+    <h1 className="text-xl md:text-2xl lg:text-4xl p-2 font-semibold ">Features enhance your customers <br /> experience</h1>
     <p className="text-sm">Each our feature has the deapth required to achieve a fully customized userflow</p>
 <div className="cards">
   <FeaturesCard/>
