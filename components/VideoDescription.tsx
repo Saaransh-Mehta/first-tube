@@ -62,16 +62,16 @@ const VideoDescription: React.FC<VideoDescriptionProps> = ({
     return count.toString();
   };
 
+ 
   return (
-    <div className="bg-white w-[34vw] rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white md:w-full lg:w-[650px] sm:w-full rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mx-auto">
       <div className='title'>
-        <h1 className='text-4xl font-semibold tracking-tight mb-2'>{title}</h1>
+        <h1 className='text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mb-2'>{title}</h1>
       </div>
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-2 sm:gap-3 mb-4">
         <div className="flex items-center bg-gray-100 rounded-full overflow-hidden">
           <button
-            
-            className={`rounded-none rounded-l-full px-4 py-2 ${hasLiked ? 'bg-blue-100 text-blue-600' : ''}`}
+            className={`rounded-none rounded-l-full px-3 sm:px-4 py-2 ${hasLiked ? 'bg-blue-100 text-blue-600' : ''}`}
             onClick={handleLike}
           >
             <ThumbsUp className="w-4 h-4 mr-2" />
@@ -79,8 +79,7 @@ const VideoDescription: React.FC<VideoDescriptionProps> = ({
           </button>
           <div className="w-px h-6 bg-gray-300"></div>
           <button
-          
-            className={`rounded-none rounded-r-full px-4 py-2 ${hasDisliked ? 'bg-red-100 text-red-600' : ''}`}
+            className={`rounded-none rounded-r-full px-3 sm:px-4 py-2 ${hasDisliked ? 'bg-red-100 text-red-600' : ''}`}
             onClick={handleDislike}
           >
             <ThumbsDown className="w-4 h-4" />
@@ -88,52 +87,62 @@ const VideoDescription: React.FC<VideoDescriptionProps> = ({
         </div>
       </div>
 
-      <div className="bg-gray-50 rounded-lg p-4">
+      <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
         <div className="space-y-3">
-          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap text-sm sm:text-base">
             {isDescriptionExpanded ? description : description?.substring(0,200) }
           </p>
-          
           {description?.length > 200 && (
             <button
-              
               onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
               className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 p-0 h-auto font-medium"
             >
               {isDescriptionExpanded ? (
                 <>
-                  Show less <ChevronUp className="w-4 h-4 ml-1" />
+                  Show less <ChevronUp className="w-4 h-4 ml-1 inline" />
                 </>
               ) : (
                 <>
-                  Show more <ChevronDown className="w-4 h-4 ml-1" />
+                  Show more <ChevronDown className="w-4 h-4 ml-1 inline" />
                 </>
               )}
             </button>
           )}
         </div>
       </div>
-      <div className='author mt-4 flex justify-between'>
-        <div className="flex justify-center items-center gap-6 avatar-part">
-        <Avatar className="h-10 w-10">
-                   
-                    <AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
-                      JS
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className='flex flex-col'>
-
-                <h1 className='font-semibold  text-lg'>Jordan Sandhu</h1>
-                <p className='text-gray-500 text-sm'>143k Subscribers</p>
-                  </div>
+      <div className='author mt-4 flex flex-col sm:flex-row justify-between gap-4'>
+        <div className="flex items-center gap-4 sm:gap-6 avatar-part">
+          <Avatar className="h-10 w-10">
+            <AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+              JS
+            </AvatarFallback>
+          </Avatar>
+          <div className='flex flex-col'>
+            <h1 className='font-semibold text-base sm:text-lg'>Jordan Sandhu</h1>
+            <p className='text-gray-500 text-xs sm:text-sm'>143k Subscribers</p>
           </div>
-          <div className="subscribe">
-            {isSubscribed ? <><Button onClick={()=>setIsSubscribed(false)} className='bg-gray-400 text-white hover:bg-gray-500 transition animate-in'>Subscribed</Button></> : <><Button onClick={()=>setIsSubscribed(true)} className='bg-red-600 text-white hover:bg-red-700 transition animate-in'>Subscribe</Button></>}
-            
-          </div>
+        </div>
+        <div className="subscribe flex-shrink-0">
+          {isSubscribed ? (
+            <Button
+              onClick={() => setIsSubscribed(false)}
+              className='bg-gray-400 text-white hover:bg-gray-500 transition animate-in w-full sm:w-auto'
+            >
+              Subscribed
+            </Button>
+          ) : (
+            <Button
+              onClick={() => setIsSubscribed(true)}
+              className='bg-red-600 text-white hover:bg-red-700 transition animate-in w-full sm:w-auto'
+            >
+              Subscribe
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
+
 };
 
 export default VideoDescription;

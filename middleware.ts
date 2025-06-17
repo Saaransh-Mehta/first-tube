@@ -12,6 +12,7 @@ const publicRoutes = createRouteMatcher([
 // List your public API routes here; these don't need auth
 const publicApiRoutes = createRouteMatcher([
   "/api/videos",
+  "/api/livestream"
 ]);
 
 export default  clerkMiddleware(async (auth, req) => {

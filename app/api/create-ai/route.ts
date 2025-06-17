@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     messages: [
       {
         role: 'user',
-        content: `Write a short, engaging script for a 60-second educational video on "${title}". Use simple and friendly language for students.`
+        content: `Write a short, engaging script for a 5 minute content based video on "${title}". Use simple and friendly language for students.`
       }
     ],
     temperature: 0.7,
