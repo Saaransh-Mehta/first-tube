@@ -1,3 +1,4 @@
+'use client'
 import { HeroSectionOne } from "@/components/Hero";
 import { NavbarComponent } from "@/components/Navbar";
 import { Card,CardDescription } from "@/components/ui/card";
@@ -5,8 +6,15 @@ import { IconUser,IconBrandMastercard } from "@tabler/icons-react";
 import dribbleImg from '@/public/dribbleImg.png'
 import Image from "next/image";
 import FeaturesCard from "@/components/Card";
+import { motion, useScroll, useTransform } from "motion/react";
+import Footer from "../components/Footer";
+
 
 export default function Home() {
+  const {scrollYProgress} = useScroll()
+
+  const opacityControl = useTransform(scrollYProgress,[0,0.5,1],[0,1,0])
+  const scaleConrol = useTransform(scrollYProgress,[0,0.8,1],[0.8,1,0.8])
   return (
    <main className="landing-page">
    <div className="navbar">
@@ -15,16 +23,22 @@ export default function Home() {
    <div className="hero-section">
     <HeroSectionOne/>
    </div>
-   <div className="features flex text-center items-center justify-center flex-col gap-4 p-4">
+   <motion.div 
+   initial={{  y: 20 , scale: 0.8 }}
+    animate={{ y: 0  }}
+    style={{ scale: scaleConrol }}
+    transition={{ duration: 0.3,ease:"linear" }}
+   className="features flex text-center items-center justify-center flex-col gap-4 p-4">
     <h1 className="text-xl md:text-2xl lg:text-4xl p-2 font-semibold ">Features enhance your customers <br /> experience</h1>
     <p className="text-sm">Each our feature has the deapth required to achieve a fully customized userflow</p>
 <div className="cards">
   <FeaturesCard/>
 </div>
-   </div>
+   </motion.div>
 
    <div className="experience h-[100vh] flex justify-center gap-20 items-center  mt-10">
-      <div className="left">
+      <div
+      className="left">
         <Image src={dribbleImg} alt="Dribble Image" className="w-[500px] h-[500px] object-cover rounded-lg " />
       </div>
       <div className="right flex justify-center flex-col ">
@@ -68,6 +82,9 @@ export default function Home() {
          
         </div>
       </div>
+   </div>
+   <div className="footer">
+   <Footer/>
    </div>
    </main>
   );

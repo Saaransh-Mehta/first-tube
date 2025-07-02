@@ -1,9 +1,15 @@
-
+'use client'
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { User, CreditCard, DollarSign } from "lucide-react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 const FeaturesCard = () => {
+
+  const {scrollYProgress} = useScroll();
+
+  const opacityControl = useTransform(scrollYProgress,[0,0.5,1],[0,1,0])
+
   const features = [
     {
       id: 1,
@@ -32,7 +38,11 @@ const FeaturesCard = () => {
   ];
 
   return (
-    <div className="w-full grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 max-w-6xl mx-auto p-6">
+    <motion.div
+    initial={{  y: 20 }}
+    animate={{ y: 0 }}
+    
+    className="w-full grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 max-w-6xl mx-auto p-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {features.map((feature) => {
           const IconComponent = feature.icon;
@@ -61,7 +71,7 @@ const FeaturesCard = () => {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

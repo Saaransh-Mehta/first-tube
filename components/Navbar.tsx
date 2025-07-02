@@ -11,8 +11,10 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export  function NavbarComponent(){
+  const navigate = useRouter();
     const navItems = [
     {
       name: "Features",
@@ -28,6 +30,9 @@ export  function NavbarComponent(){
     },
   ];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const redirectToSignup = ()=>{
+    navigate.push("/signup");
+  }
 
   return (
      <div className="relative w-full ">
@@ -36,8 +41,8 @@ export  function NavbarComponent(){
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Create Videos</NavbarButton>
+            <NavbarButton onClick={redirectToSignup} variant="secondary">Login</NavbarButton>
+            <NavbarButton onClick={redirectToSignup} variant="primary">Create Videos</NavbarButton>
           </div>
         </NavBody>
  

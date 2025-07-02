@@ -85,7 +85,9 @@ export function HeroSectionOne() {
           }}
           className="relative z-10 mt-20 rounded-3xl border border-neutral-200 bg-neutral-100 p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900"
         >
-          <div className="w-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700">
+          <div
+        
+          className="w-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700">
             <Image 
             src={dashboardImage}
             alt="Dashboard Image"
