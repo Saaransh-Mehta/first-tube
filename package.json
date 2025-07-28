@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.20.0",
+    "@google/genai": "^1.11.0",
+    "@google/generative-ai": "^0.24.1",
     "@livepeer/react": "^4.3.5",
     "@prisma/client": "^6.8.2",
     "@radix-ui/react-avatar": "^1.1.10",

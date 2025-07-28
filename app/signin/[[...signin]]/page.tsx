@@ -33,9 +33,21 @@ const Signin = () => {
       } else {
         console.log(result);
       }
-    } catch (err: any) {
+    } catch (err: string | unknown) {
       console.log(JSON.stringify(err, null, 2));
-      setClerkError(err.errors[0].message);
+      if (
+        typeof err === "object" &&
+        err !== null &&
+        "errors" in err &&
+        Array.isArray(err.errors) &&
+        err.errors[0]?.message
+      ) {
+        setClerkError(err.errors[0].message);
+      } else if (typeof err === "string") {
+        setClerkError(err);
+      } else {
+        setClerkError("An unknown error occurred.");
+      }
     }
   };
 

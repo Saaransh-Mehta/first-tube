@@ -10,7 +10,8 @@ const Page = () => {
   const handleGenerate = async () => {
     setLoading(true);
     const response = await axios.post('/api/create-ai',{title})
-    const data = response.data.script[0].text;
+    const data = response.data.script;
+    console.log(data.script)
     setTimeout(() => {
       setAiContent(`AI generated content for "${title}"` + ` ${data}`);
       setLoading(false);

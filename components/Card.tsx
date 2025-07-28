@@ -2,13 +2,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { User, CreditCard, DollarSign } from "lucide-react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 
 const FeaturesCard = () => {
 
-  const {scrollYProgress} = useScroll();
+ 
 
-  const opacityControl = useTransform(scrollYProgress,[0,0.5,1],[0,1,0])
 
   const features = [
     {

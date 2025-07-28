@@ -13,7 +13,7 @@ import Footer from "../components/Footer";
 export default function Home() {
   const {scrollYProgress} = useScroll()
 
-  const opacityControl = useTransform(scrollYProgress,[0,0.5,1],[0,1,0])
+  
   const scaleConrol = useTransform(scrollYProgress,[0,0.8,1],[0.8,1,0.8])
   return (
    <main className="landing-page">

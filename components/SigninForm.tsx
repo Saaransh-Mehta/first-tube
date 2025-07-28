@@ -147,7 +147,7 @@ const SigninForm = ({ signInWithEmail, clerkError }: SignInFormProps) => {
             </motion.button>
           </form>
           <div className="mt-6 text-center text-sm text-neutral-500 dark:text-neutral-400">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
               href="/sign-up"
               className="text-blue-600 hover:underline font-medium"
