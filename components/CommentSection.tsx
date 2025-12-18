@@ -59,7 +59,7 @@ const formatTime = (time: number): string => {
     
   
   return (
-    <div className="lg:w-[650px] md:w-full sm:w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-0">
+    <div className="w-full max-w-[650px] mx-auto px-2 sm:px-4 md:px-6 lg:px-0">
       <Card className="shadow-lg border-0 bg-white/60 backdrop-blur-sm dark:bg-slate-800/60">
         <CardContent className="p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-6">
