@@ -15,14 +15,14 @@ interface SignInFormProps {
 
 const SigninForm = ({ signInWithEmail, clerkError }: SignInFormProps) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 transition-colors">
-      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl overflow-hidden border border-neutral-200 dark:border-neutral-700">
+    <div className="min-h-screen flex items-center justify-center bg-neutral-100 dark:bg-[#050505] transition-colors">
+      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 bg-white dark:bg-[#0a0a0a] rounded-2xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-none overflow-hidden border border-neutral-200 dark:border-neutral-800">
         
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, type: "spring" }}
-          className="hidden md:flex flex-col items-center justify-center bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900"
+          className="hidden md:flex flex-col items-center justify-center bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100 dark:from-[#0a0a0a] dark:via-neutral-900/50 dark:to-[#0a0a0a]"
         >
           <svg
     viewBox="0 0 512 512"
@@ -112,7 +112,7 @@ const SigninForm = ({ signInWithEmail, clerkError }: SignInFormProps) => {
                 type="email"
                 name="email"
                 required
-                className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-neutral-900 transition"
+                className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-800 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-[#0f0f0f] dark:text-white transition"
                 placeholder="you@email.com"
               />
             </div>
@@ -125,7 +125,7 @@ const SigninForm = ({ signInWithEmail, clerkError }: SignInFormProps) => {
                 type="password"
                 name="password"
                 required
-                className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-neutral-900 transition"
+                className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-800 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-[#0f0f0f] dark:text-white transition"
                 placeholder="Your password"
               />
             </div>

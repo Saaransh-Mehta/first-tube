@@ -29,7 +29,7 @@ const Signin = () => {
       if (result.status === "complete") {
         console.log(result);
         await setActive({session: result.createdSessionId});
-        router.push("/");
+        router.push("/home");
       } else {
         console.log(result);
       }

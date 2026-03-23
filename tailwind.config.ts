@@ -69,4 +69,8 @@ export default {
   	}
   },
   plugins: [daisyui(), require("tailwindcss-animate")],
+  daisyui: {
+    themes: ["light", "dark"],
+    darkTheme: "dark",
+  },
 } satisfies Config;

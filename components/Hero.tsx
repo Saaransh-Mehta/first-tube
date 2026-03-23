@@ -16,8 +16,8 @@ export function HeroSectionOne() {
         <div className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
       </div>
       <div className="px-4 py-10 md:py-20">
-        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-6xl dark:text-slate-300">
-          {"The Future of Education is Here. Create. Collaborate. Transform."
+        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-7xl dark:text-white">
+          {"Your Ultimate Video Platform. Upload, AI-Script, and Share."
             .split(" ")
             .map((word, index) => (
               <motion.span
@@ -29,9 +29,15 @@ export function HeroSectionOne() {
                   delay: index * 0.1,
                   ease: "easeInOut",
                 }}
-                className="mr-2 inline-block"
+                className="mr-2 inline-block bg-clip-text"
               >
-                {word}
+                {index >= 4 && index <= 7 ? (
+                    <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500">
+                        {word}
+                    </span>
+                ) : (
+                    word
+                )}
               </motion.span>
             ))}
         </h1>
@@ -48,7 +54,7 @@ export function HeroSectionOne() {
           }}
           className="relative z-10 mx-auto max-w-xl py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400"
         >
-          Empowering educators with seamless image and video tools to build dynamic lessons. Unlocking a world of free and premium learning for every student.
+          Empowering creators and viewers. Upload your videos effortlessly, generate AI-powered scripts instantly, and enjoy a seamless watching experience.
         </motion.p>
         <motion.div
           initial={{
@@ -63,11 +69,11 @@ export function HeroSectionOne() {
           }}
           className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
         >
-          <button className="w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-            Explore Now
+          <button className="w-56 transform rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)]">
+            Start Uploading
           </button>
-          <button className="w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
-            Contact Support
+          <button className="w-56 transform rounded-xl border border-neutral-200 bg-white px-6 py-3 font-semibold text-neutral-900 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-white dark:hover:bg-neutral-800/80">
+            Watch Videos
           </button>
         </motion.div>
         <motion.div

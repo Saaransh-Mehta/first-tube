@@ -3,26 +3,8 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Play, Clock } from "lucide-react"
 
-export default function VideoComponent() {
-  const videos = [
-    {
-      id: 1,
-      title: "Introduction to React Hooks",
-      thumbnail: "",
-      duration: "12:34",
-      status: "published",
-      updatedAgo: "2 hours ago",
-    },
-    {
-      id: 2,
-      title: "Building Modern UIs with Tailwind CSS",
-      thumbnail: "",
-      duration: "18:45",
-      status: "in progress",
-      updatedAgo: "1 day ago",
-    },
-
-      ]
+export default function VideoComponent({ videos = [] }: { videos?: any[] }) {
+  const displayVideos = videos;
 
   return (
     <Card className="w-full max-w-2xl">
@@ -33,7 +15,8 @@ export default function VideoComponent() {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        {videos.map((video) => (
+        {displayVideos.length === 0 && <p className="text-sm text-muted-foreground p-4">No recent videos found.</p>}
+        {displayVideos.map((video) => (
           <div key={video.id} className="flex items-start gap-4 p-3 rounded-lg hover:bg-muted/50 transition-colors">
             <div className="relative flex-shrink-0">
               <img

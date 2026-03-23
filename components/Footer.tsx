@@ -1,29 +1,30 @@
+"use client";
 import { motion } from 'framer-motion'
 
 const Footer = () => {
   const FooterList = [
     {
       name:"Contact us",
-      href:"#contact"
+      href:"/contact"
     },{
       name:"Pricing",
-      href:"#pricing"
+      href:"/pricing"
     },{
       name:"Features",
-      href:"#features"
+      href:"/#features"
     },{
       name:"About us",
-      href:"#about"
+      href:"/about"
     },{
       name:"Terms of Service",
-      href:"#terms"
+      href:"#"
     },{
       name:"Privacy Policy",
-      href:"#privacy"
+      href:"#"
     }
   ]
   return (
-    <section className="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 w-full">
+    <section className="border-t border-neutral-200 dark:border-neutral-900 bg-white dark:bg-[#050505] w-full transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Logo & Branding */}

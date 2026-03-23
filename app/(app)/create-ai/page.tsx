@@ -19,7 +19,7 @@ const Page = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
+    <div className="max-w-xl mx-auto mt-10 p-6 bg-white dark:bg-neutral-800 rounded-lg shadow">
       <h1 className="text-2xl font-bold mb-4">AI Video Content Generator</h1>
       <label className="block mb-2 font-medium">Video Title</label>
       <input
@@ -30,7 +30,7 @@ const Page = () => {
         onChange={e => setTitle(e.target.value)}
       />
       <button
-        className="bg-black/70 text-white px-4 py-2 rounded hover:bg-black/80 transition mb-4 w-full"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition mb-4 w-full"
         onClick={handleGenerate}
         
       >
@@ -38,7 +38,7 @@ const Page = () => {
       </button>
       <label className="block mb-2 font-medium">AI Generated Content</label>
       <textarea
-        className="w-full h-96 px-3 py-2 border rounded bg-gray-100"
+        className="w-full h-96 px-3 py-2 border rounded bg-gray-100 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-100"
         rows={6}
         value={aiContent}
         readOnly

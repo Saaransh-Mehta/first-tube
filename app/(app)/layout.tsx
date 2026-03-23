@@ -13,6 +13,7 @@ import {
   ImageIcon,
   BotIcon
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeProvider";
 
 const sidebarItems = [
   { href: "/home", icon: LayoutDashboardIcon, label: "Home Page" },
@@ -62,6 +63,7 @@ export default function AppLayout({
               
             </div>
             <div className="flex-none flex items-center space-x-4">
+              <ThemeToggle />
               {user && (
                 <>
                   <div className="avatar">
@@ -109,8 +111,8 @@ export default function AppLayout({
                   href={item.href}
                   className={`flex items-center space-x-4 px-4 py-2 rounded-lg ${
                     pathname === item.href
-                      ? "bg-black/80 rounded-xl text-white"
-                      : "hover:bg-base-400" 
+                      ? "bg-blue-600 rounded-xl text-white"
+                      : "hover:bg-base-300" 
                   }`}
                   onClick={() => setSidebarOpen(false)}
                 >

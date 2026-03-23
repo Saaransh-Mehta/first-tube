@@ -12,26 +12,27 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ThemeToggle } from "@/components/ThemeProvider";
 
 export  function NavbarComponent(){
   const navigate = useRouter();
     const navItems = [
     {
       name: "Features",
-      link: "#features",
+      link: "/#features",
     },
     {
       name: "Pricing",
-      link: "#pricing",
+      link: "/pricing",
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "/contact",
     },
   ];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const redirectToSignup = ()=>{
-    navigate.push("/signup");
+    navigate.push("/sign-up");
   }
 
   return (
@@ -41,6 +42,7 @@ export  function NavbarComponent(){
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <NavbarButton onClick={redirectToSignup} variant="secondary">Login</NavbarButton>
             <NavbarButton onClick={redirectToSignup} variant="primary">Create Videos</NavbarButton>
           </div>
@@ -50,10 +52,13 @@ export  function NavbarComponent(){
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </div>
           </MobileNavHeader>
  
           <MobileNavMenu

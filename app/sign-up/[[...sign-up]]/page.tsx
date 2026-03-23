@@ -27,7 +27,7 @@ const Page = () => {
       });
       if (result.status === "complete") {
         await setActive({ session: result.createdSessionId });
-        router.push("/");
+        router.push("/home");
       }
     } catch (err: unknown) {
       if (
@@ -51,7 +51,7 @@ const Page = () => {
     setLoading(true);
     setClerkError("");
     try {
-      await signUp.authenticateWithRedirect({ strategy, redirectUrl: "/", redirectUrlComplete: "/" });
+      await signUp.authenticateWithRedirect({ strategy, redirectUrl: "/home", redirectUrlComplete: "/home" });
     } catch (err: string | unknown) {
       setClerkError("Social sign up failed" + err);
       setLoading(false);

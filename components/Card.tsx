@@ -1,38 +1,35 @@
 'use client'
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { User, CreditCard, DollarSign } from "lucide-react";
+import { UploadCloud, Wand2, PlayCircle } from "lucide-react";
 import { motion } from "motion/react";
 
 const FeaturesCard = () => {
 
- 
-
-
   const features = [
     {
       id: 1,
-      title: "Free and Open source ",
-      description: "Providing free and open source education to the students around the globe",
-      icon: User,
-      bgColor: "bg-emerald-100",
-      iconColor: "text-emerald-700"
+      title: "Seamless Uploads",
+      description: "Fast and reliable video hosting. Upload your content effortlessly and manage it all in one place.",
+      icon: UploadCloud,
+      bgColor: "bg-blue-100 dark:bg-blue-900/40",
+      iconColor: "text-blue-700 dark:text-blue-400"
     },
     {
       id: 2,
-      title: "Value",
-      description: "Providing value and assured content to the students and creators",
-      icon: CreditCard,
-      bgColor: "bg-pink-100",
-      iconColor: "text-pink-700"
+      title: "AI Script Generation",
+      description: "Writer's block? Let our advanced AI generate engaging, structured video scripts in seconds.",
+      icon: Wand2,
+      bgColor: "bg-purple-100 dark:bg-purple-900/40",
+      iconColor: "text-purple-700 dark:text-purple-400"
     },
     {
       id: 3,
-      title: "Payments",
-      description: "Easy payment method with integration of stripe and other payment gateways.",
-      icon: DollarSign,
-      bgColor: "bg-yellow-100",
-      iconColor: "text-yellow-700"
+      title: "Immersive Viewing",
+      description: "Enjoy a YouTube-like watching experience with a dynamic, highly responsive player.",
+      icon: PlayCircle,
+      bgColor: "bg-pink-100 dark:bg-pink-900/40",
+      iconColor: "text-pink-700 dark:text-pink-400"
     }
   ];
 
@@ -46,8 +43,8 @@ const FeaturesCard = () => {
         {features.map((feature) => {
           const IconComponent = feature.icon;
           return (
-            <Card key={feature.id} className="border-0 h-[300px] shadow-sm  bg-gray-50 hover:shadow-md transition-shadow duration-200">
-              <CardContent className="p-6">
+            <Card key={feature.id} className="border border-neutral-200 dark:border-neutral-800 h-[300px] shadow-lg bg-white/50 backdrop-blur-xl dark:bg-neutral-900/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <CardContent className="p-8">
                 <div className="space-y-4">
                   <div className={cn(
                     "w-12 h-12 rounded-xl flex items-center justify-center",
@@ -57,10 +54,10 @@ const FeaturesCard = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-neutral-100">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
